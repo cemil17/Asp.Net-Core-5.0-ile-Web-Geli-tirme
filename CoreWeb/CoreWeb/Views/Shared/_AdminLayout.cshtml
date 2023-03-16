@@ -1,0 +1,54 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+@await Html.PartialAsync("/Views/Admin/PartialHeader.cshtml")
+
+<body>
+	<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+		<div class="scrollbar-inner">
+			<div class="sidenav-header  align-items-center">
+				<a class="navbar-brand">
+					@*<img src="~/Admin/assets/img/brand/blue.png" class="navbar-brand-img" alt="...">*@
+					@*<span class="avatar avatar-sm rounded-circle">
+						<img alt="Image placeholder" height="60" width="100" src="~/Admin/assets/img/brand/ckg.jpg">
+					</span>*@
+
+					CKG <span class="text-primary"> Admin Paneli</span>
+
+				</a>
+			</div>
+
+			@await Html.PartialAsync("/Views/Admin/PartialSideBar.cshtml")
+
+		</div>
+	</nav>
+	<div class="main-content" id="panel">
+
+		@await Html.PartialAsync("/Views/Admin/PartialNavbar.cshtml")
+
+		@await Html.PartialAsync("/Views/Admin/PartialNavigation.cshtml")
+
+		<div class="container-fluid mt--6">
+			<div class="row">
+				<div class="col">
+					<div class="card border-0">
+						@RenderBody()
+					</div>
+					@await RenderSectionAsync("Scripts",required:false)
+				</div>
+			</div>
+
+			@await Html.PartialAsync("/Views/Admin/PartialFooter.cshtml")
+
+		</div>
+	</div>
+
+	@await Html.PartialAsync("/Views/Admin/PartialScripts.cshtml")
+
+</body>
+
+</html>

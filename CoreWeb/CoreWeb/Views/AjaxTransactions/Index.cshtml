@@ -1,0 +1,149 @@
+﻿@using EntityLayer.Concrete
+@model List<Experience>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-md-6">
+	<div class="p-2">
+		<button class="btn btn-outline-warning" id="getListAll" type="button">Veri Getir</button>
+		<button class="btn btn-outline-info" id="btnAdd" type="button">Kaydet</button>
+		<button class="btn btn-outline-success" id="btnGET" type="button">ID ile Getir</button>
+		<button class="btn btn-outline-danger" id="btnDelete" type="button">Sil</button>
+		<button class="btn btn-outline-primary" id="btnUpdate" type="button">Güncelle</button>
+	</div>
+</div>
+
+<h3 class="text-center">Deneyim Listesi</h3>
+<div class="p-2" id="listExperience">
+	veriler burada listelenecek
+</div>
+
+
+<hr />
+
+<h3 class="text-center">Deneyim Sil</h3>
+<div class="p-2" id="deletePanel">
+	<input type="text" id="remove" placeholder="ID" class="form-control" />
+</div>
+
+<hr />
+
+<h3 class="text-center">Deneyim Listesi (ID)</h3>
+<div class="p-2" id="listIDExperience">
+</div>
+
+<hr />
+<br />
+<div class="col-md-12">
+	<h3>Ekleme</h3>
+	<input type="text" id="title" placeholder="Deneyim" class="form-control" />
+	<br>
+	<input type="text" id="date" placeholder="Tarih" class="form-control" />
+	<br>
+	<input type="text" id="description" placeholder="Açıklama" class="form-control" />
+	<br>
+	<input type="text" id="url" placeholder="Resim yolu" class="form-control" />
+	<br>
+</div>
+<br />
+<div class="col-md-12">
+	<h3>ID'ye Göre Getir'</h3>
+	<input type="text" id="id" placeholder="ID" class="form-control" />
+	<br>
+
+</div>
+
+
+
+@section Scripts
+	{
+	<script>
+		$("#getListAll").click(function () {  // Listeleme
+			$.ajax({
+				contentType: "application/json",
+				dataType: "json",
+				type: "Get",
+				url: "/AjaxTransactions/ListExperience/",
+
+				success: function (func) {
+					let values = jQuery.parseJSON(func);
+					console.log(values);
+
+					let htmlTAG = "<table class= table table-bordered> <tr> <th>ID</th> <th>Başlık</th> <th>Tarih</th> </tr>";
+
+					$.each(values, (index, value) => {
+						htmlTAG += `<tr> <td> ${value.ExperienceID} </td> <td> ${value.Title} </td> <td> ${value.Date} </td> </tr>`
+					});
+					htmlTAG += "</table>";
+					$("#listExperience").html(htmlTAG);
+				}
+			});
+		});
+
+		$("#btnAdd").click(function () { //Ekleme
+			let values = {
+				Title: $("#title").val(),
+				Date: $("#date").val(),
+				Description: $("#description").val(),
+				ImageURL: $("#url").val()
+			};
+
+			$.ajax({
+				type: "Post",
+				url: "/AjaxTransactions/AddExperience/",
+				data: values,
+				success: function (func1) {
+					let results = jQuery.parseJSON(func1);
+					alert(results.Title + " Başarılı bir şekilde eklendi.");
+				}
+			});
+		});
+
+		$("#btnGET").click(x => { //ID'ye Göre Getirme
+			let id = $("#id").val();
+
+			$.ajax({
+				contentType: "application/json",
+				dataType: "json",
+				type: "Get",
+				url: "/AjaxTransactions/GetByID/",
+				data: { ExperienceID: id },
+
+				success: function (func3) {
+					let results = jQuery.parseJSON(func3);
+
+					console.log(results);
+
+					let htmlTAG2 = `<table class= table table-hover> <tr> <th>ID</th> <td> ${results.ExperienceID} </td>  </tr> </table>`;
+
+					//htmlTAG2 += "</table>";
+					$("#listIDExperience").html(htmlTAG2);
+				}
+			})
+
+		})
+
+		$("#btnDelete").click(c => { // Silme
+			let id = $("#remove").val();
+
+			$.ajax({
+				url: "/AjaxTransactions/DeleteExperience/" + id,
+				type: "Post",
+				contentType: "application/json",
+				dataType: "json",
+
+				success: function (func4) {
+					loadData();
+				}
+			});
+		});
+	</script>
+}
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+@await Html.PartialAsync("/Views/Admin/PartialScripts.cshtml")

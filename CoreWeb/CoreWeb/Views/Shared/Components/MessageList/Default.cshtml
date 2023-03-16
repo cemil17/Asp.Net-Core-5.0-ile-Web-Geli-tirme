@@ -1,0 +1,33 @@
+﻿@using EntityLayer.Concrete
+@model List<Message>
+
+
+
+<div class="col-md-4 grid-margin stretch-card">
+	<div class="card">
+		<div class="card-body">
+			<h4 class="card-title">Mesajlar</h4>
+
+			<small><a href="$">Tümünü Görüntüle</a></small>
+			<br />
+			@foreach (var item in Model)
+			{<br>
+				<ul class="icon-data-list">
+					<li>
+						<div class="d-flex">
+							@*<img src="~/Admin2/images/user.png" height="55" width="55" alt="user">*@
+							<div>
+								
+								<a href="#">@item.Name</a>
+								<a href="/Contact/Details/@item.MessageID">
+									<p class="overflow-auto mb-0">@item.Content.Substring(0, item.Content.Substring(0, 90).LastIndexOf(" "))...</p>
+								</a>
+								<small class="font-weight-bold">@item.Date.ToShortDateString()</small>
+							</div>
+						</div>
+					</li>
+				</ul>
+			}
+		</div>
+	</div>
+</div>

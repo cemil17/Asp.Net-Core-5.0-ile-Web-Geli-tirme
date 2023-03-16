@@ -1,0 +1,32 @@
+﻿@model EntityLayer.Concrete.Announcement
+
+@{
+	ViewData["Title"] = "AnnouncementDetails";
+	Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+
+
+<div class="col-lg-12">
+	<a href="/Writer/Author/Index/">
+		<div>
+			<i class="mdi mdi-arrow-left-bold"></i>
+			<span>Geri Dön</span>
+		</div>
+	</a>
+</div>
+<div class="col-md-12 grid-margin stretch-card">
+	<div class="card">
+		<div class="card-body">
+			<h4 class="card-title">Duyuru Detay</h4>
+			<form class="form-group">
+				@Html.HiddenFor(c => c.ID)
+				<br />	
+				@Html.TextAreaFor(c => c.Content,7,2, new { @class="form-control" })
+				@Html.TextBoxFor(c=>c.Status)
+				@Html.TextBoxFor(c=>c.Date)
+			</form>
+		</div>
+	</div>
+</div>
+

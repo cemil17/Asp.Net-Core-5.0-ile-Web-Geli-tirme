@@ -1,0 +1,58 @@
+﻿@model EntityLayer.Concrete.Contact
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="@Url.Content("~/Admin/assets/css/custom.css")" rel="stylesheet" />
+
+<div class="row">
+	<div class="col-xl-8 order-xl-1">
+		<div class="card">
+			<div class="card-header">
+				<div class="row align-items-center">
+					<div class="col-8">
+						<h3 class="mb-0">İletişim </h3>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				@using (Html.BeginForm("Index", "ContactInfo", FormMethod.Post))
+				{
+					<form class="forms-sample">
+						<h6 class="heading-small text-muted mb-4">Kullanıcı Bilgilerim</h6>
+
+						<div class="pl-lg-4">
+							<div class="row">
+								@Html.HiddenFor(x=>x.ContactID)
+								<div class="col-lg-6">
+									<div class="form-group">
+										@Html.TextBoxFor(c => c.Title, new { @class="form-control" })
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="form-group">
+										@Html.TextBoxFor(c => c.Phone, new { @class="form-control"})
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										@Html.TextBoxFor(c => c.Mail, new { @class="form-control"})
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="form-group">
+										@Html.TextAreaFor(c => c.Description,5,2, new { @class="form-control"})
+									</div>
+								</div>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-warning mr-2">Güncelle</button>
+					</form>
+				}
+			</div>
+		</div>
+	</div>
+</div>

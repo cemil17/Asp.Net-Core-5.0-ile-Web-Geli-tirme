@@ -1,0 +1,35 @@
+﻿@using EntityLayer.Concrete
+@model List<ToDoList>
+
+
+<div class="col-md-4 grid-margin stretch-card">
+	<div class="card">
+		<div class="card-body">
+			<h4 class="card-title">Yapılacaklar</h4>
+			<br />
+			<div class="list-wrapper pt-2">
+				@foreach (var item in Model)
+				{
+					<ul class="d-flex flex-column todo-list todo-list-custom">
+						<li>
+							<div class="form-check form-check-flat">
+								<label class="form-check-label">
+									<input class="checkbox" type="checkbox">
+									@item.Description
+								</label>
+							</div>
+							<i class="remove ti-close"></i>
+						</li>
+					</ul>
+				}
+
+			</div>
+			<div class="add-items d-flex mb-0 mt-2">
+				<input type="text" class="form-control todo-list-input" placeholder="Yeni">
+				<button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i class="icon-circle-plus"></i></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+

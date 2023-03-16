@@ -1,0 +1,97 @@
+﻿@using EntityLayer.Concrete
+@model List<Message>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@{
+	string icon = "";
+}
+
+<div class="row">
+	<div class="col">
+		<div class="card">
+			<div class="card-header border-0">
+				<h3 class="mb-0">Gelen Mesajlar</h3>
+
+			</div>
+			<div class="nav-item dropdown">
+				<a class="nav-link nav-link-icon" href="#" id="navbar-default_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="ni ni-email-83 text-orange"></i>
+					<span class="nav-link-text">Admin Mesajlar</span>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbar-default_dropdown_1">
+					<a class="dropdown-item" href="/AdminMessage/SendBox/">Mesaj Gönder</a>
+					<a class="dropdown-item" href="/AdminMessage/ReceiverMessageBox/">Gelen Mesajlar</a>
+					<a class="dropdown-item" href="/AdminMessage/SenderMessageBox/">Giden Mesajlar</a>
+				</div>
+			</div>
+			<div class="table-responsive">
+				<table class="table align-items-center table-flush">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col" class="sort">#</th>
+							<th scope="col" class="sort">Mail</th>
+							<th scope="col" class="sort">Mesaj</th>
+							<th scope="col" class="sort">Tarih</th>
+							<th scope="col" class="sort" data-sort="completion">İşlemler</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody class="list">
+						@foreach (var item in Model)
+						{
+							if (item.Status == false)
+							{
+								icon = "/admin/assets/img/icons/common/eye-slash-solid.svg";
+							}
+							if (item.Status == true)
+							{
+								icon = "/admin/assets/img/icons/common/eye-solid.svg";
+							}
+
+							<tr>
+								<th scope="row">
+									<div class="media align-items-center">
+										<div class="media-body">
+											<span class="name mb-0 text-sm">@item.MessageID</span>
+										</div>
+										@*										<img alt="Image placeholder" height="90" width="90" src="@item.ma">
+									*@
+									</div>
+								</th>
+								<td class="budget">
+									<span class="badge badge-warning badge-lg">@item.Name</span>
+									-
+									<a href="mailto:@item.Mail" class="text-dark">@item.Mail </a>
+								</td>
+								<td>
+									<div class="d-flex align-items-center" data-toggle="tooltip" data-placement="top" title="Mesaj detay için tıklayın.">
+										<a href="/Contact/Details/@item.MessageID">
+											<span class="completion mr-2">									
+
+												@item.Content.Substring(0, item.Content.Substring(0, 90).LastIndexOf(" "))...
+
+											</span>
+										</a>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<span class="completion mr-2">@item.Date.ToShortDateString()</span>
+									</div>
+								</td>
+								<td class="text">
+									<img alt="Image placeholder" height="50" width="50" src="@icon">
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,140 @@
+﻿@model CoreWeb.Areas.Writer.Models.UserEditViewModel
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+	<meta name="author" content="Creative Tim">
+	<title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+	<link rel="icon" href="~/Admin/assets/img/brand/favicon.png" type="image/png">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+	<link rel="stylesheet" href="~/Admin/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+	<link rel="stylesheet" href="~/Admin/assets/vendor/fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+	<link rel="stylesheet" href="~/Admin2/vendors/feather/feather.css">
+	<link rel="stylesheet" href="~/Admin2/vendors/ti-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="~/Admin2/vendors/css/vendor.bundle.base.css">
+	<link rel="stylesheet" href="~/Admin2/css/vertical-layout-light/style.css">
+	<link rel="shortcut icon" href="~/Admin2/images/favicon.png" />
+	<link rel="stylesheet" href="~/Admin2/vendors/mdi/css/materialdesignicons.min.css">
+	<link href="@Url.Content("~/Admin/assets/css/custom.css")" rel="stylesheet" />
+
+	<link rel="stylesheet" href="~/Admin/assets/css/argon.css?v=1.2.0" type="text/css">
+</head>
+
+<body>
+
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-xl-6 order-xl-2 center">
+				<div class="card card-profile">
+					<img src="~/Admin/assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
+					<div class="row justify-content-center">
+						<div class="col-lg-3 order-lg-2">
+							<div class="card-profile-image">
+
+								<img src="~/userImage/@ViewBag.profile" height="200" width="200" class="rounded-circle">
+
+							</div>
+						</div>
+					</div>
+					<div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+						<div class="d-flex justify-content-between">
+							<a class="btn-sm btn-info  mr-4 "></a>
+							<a class="btn-sm btn-default float-right"></a>
+						</div>
+					</div>
+					<br />
+					<br />
+					<br />
+					<div class="card-body pt-0">
+
+						<div class="text-center">
+							<div class="pl-lg-4">
+								<form method="post" enctype="multipart/form-data">
+									<div class="row">
+										@*								@Html.HiddenFor(x=>x.AboutID)
+										*@								<div class="col-lg-6">
+											<div class="form-group">
+												<div class="form-group">
+													<input type="text" asp-for="Name" class="form-control" placeholder="Adınız">
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<div class="form-group">
+													<input type="text" asp-for="Email" class="form-control" placeholder="E-Posta">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<div class="form-group">
+													<input type="text" asp-for="Surname" class="form-control" placeholder="Soyadınız">
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<div class="form-group">
+													<input type="password" asp-for="Password" class="form-control" placeholder="Şifre">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<div class="form-group">
+												<div class="custom-file">
+													<input type="file" asp-for="Picture" id="customFileLang" lang="tr">
+													<label class="custom-file-label" for="customFileLang">Resim Seçin</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-6">
+											<div class="form-group">
+												<div class="form-group">
+													<input type="password" asp-for="PasswordConfirm" class="form-control" placeholder="Şifre Tekrar">
+												</div>
+											</div>
+										</div>
+									</div>
+									<br />
+									<br />
+									<button type="submit" class="btn btn-primary btn-lg btn-block">Güncelle</button>
+								</form>
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="~/Admin2/vendors/js/vendor.bundle.base.js"></script>
+	<script src="~/Admin2/js/off-canvas.js"></script>
+	<script src="~/Admin2/js/hoverable-collapse.js"></script>
+	<script src="~/Admin2/js/template.js"></script>
+	<script src="~/Admin/assets/vendor/jquery/dist/jquery.min.js"></script>
+	<script src="~/Admin/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/Admin/assets/vendor/js-cookie/js.cookie.js"></script>
+	<script src="~/Admin/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+	<script src="~/Admin/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+	<script src="~/Admin/assets/js/argon.js?v=1.2.0"></script>
+
+</body>
+
+</html>

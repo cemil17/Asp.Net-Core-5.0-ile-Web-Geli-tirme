@@ -1,0 +1,38 @@
+﻿@model EntityLayer.Concrete.SocialMedia
+
+@{
+    ViewData["Title"] = "UpdateMedia";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="card-header bg-transparent border-0 ">
+	<h3 class="text-white mb-0">Sosyal Medya Güncelleme</h3>
+</div>
+
+
+@using (Html.BeginForm("UpdateMedia", "SocialMedia", FormMethod.Post))
+{
+
+	<div class="col-lg-7 col-md-10">
+		<form class="form-group" method="post">
+			@Html.HiddenFor(c=>c.SocialMediaID)
+			<label for="example-text-input" class="form-control-label">Sosyal Medya</label>
+			@Html.TextBoxFor(c => c.Media, new { @class="form-control" })
+			<br />
+			<label for="example-text-input" class="form-control-label">İcon URL (fab fa-)</label>
+			@Html.TextBoxFor(c => c.Icon, new { @class="form-control" })
+			<br />
+			<label for="example-text-input" class="form-control-label">Link</label>
+			@Html.TextBoxFor(c => c.URL, new { @class="form-control" })
+			<br />
+			<button class="btn btn-outline-warning">Güncelle</button>
+			<br />
+			<br />
+
+		</form>
+	</div>
+}
+

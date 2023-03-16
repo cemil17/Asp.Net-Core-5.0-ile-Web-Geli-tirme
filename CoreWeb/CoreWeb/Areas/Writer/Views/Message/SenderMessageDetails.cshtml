@@ -1,0 +1,55 @@
+﻿@model EntityLayer.Concrete.MessageSwitchingSystem
+
+@{
+	ViewData["Title"] = "SenderMessageDetails";
+	Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+
+<div class="col-lg-12">
+	<a href="/Writer/Message/SenderMessage/">
+		<div>
+			<i class="mdi mdi-arrow-left-bold"></i>
+			<span>Geri Dön</span>
+		</div>
+	</a>
+</div>
+<div class="col-md-12 grid-margin stretch-card">
+	<div class="card">
+		<div class="card-body">
+			<h4 class="card-title">Mesaj Detay</h4>
+			<form class="form-group">
+				@Html.HiddenFor(c => c.ID)
+				@Html.TextBoxFor(c=>c.Subject,new { @class="form-control", @readonly = "readonly" })
+				<br />
+				@Html.TextBoxFor(c=>c.Date,new { @class="form-control" , @readonly = "readonly"})
+				<br />
+				@*	@Html.TextBoxFor(c=>c.ReceiverName,new { @class="form-control" })
+				<br />*@
+				@Html.TextBoxFor(c=>c.Receiver,new { @class="form-control", @readonly = "readonly" })
+				<br />
+				@Html.TextAreaFor(c => c.Message,7,2, new { @class="form-control" , @readonly = "readonly"})
+				<br />
+
+			@*	@if (Model.Status == false)
+				{
+					<a href="/Contact/Recited/@Model.ID" class="btn btn-outline-success">Okundu</a>
+				}*@
+
+				@if (Model.Sender != User.Identity.Name)
+				{
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+					<script>
+						$("document").ready(function () {
+							swal("", "Mesaj gönderilmiştir!", "info");
+						});
+					</script>
+				}
+
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

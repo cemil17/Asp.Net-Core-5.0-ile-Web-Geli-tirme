@@ -1,0 +1,61 @@
+﻿@model EntityLayer.Concrete.Message
+
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12">
+	<a href="/Contact/Index/">
+		<div>
+			<i class="mdi mdi-arrow-left-bold"></i>
+			<span>Geri Dön</span>
+		</div>
+	</a>
+</div>
+<div class="col-md-12 grid-margin stretch-card">
+	<div class="card">
+		<div class="card-body">
+			<h4 class="card-title">Mesaj Detay</h4>
+			<form class="form-group">
+				@Html.HiddenFor(c => c.MessageID)
+				@Html.TextBoxFor(c=>c.Name,new { @class="form-control" , @readonly = "readonly"})
+				<br />
+				@Html.TextBoxFor(c=>c.Mail,new { @class="form-control", @readonly = "readonly" })
+				<br />
+				@*	@Html.TextBoxFor(c=>c.ReceiverName,new { @class="form-control" })
+				<br />*@
+				@Html.TextBoxFor(c=>c.Date,new { @class="form-control", @readonly = "readonly" })
+				<br />
+				@Html.TextAreaFor(c => c.Content,8,2, new { @class="form-control" , @readonly = "readonly"})
+				<br />
+
+				@if (Model.Status == false)
+				{
+					<a href="/Contact/DeleteMessage/@Model.MessageID" class="btn btn-outline-danger">Sil</a>
+					<a href="/Contact/Recited/@Model.MessageID" class="btn btn-outline-success">Okundu</a>
+				}
+
+				@if (Model.Status == true)
+				{
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+					<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+					<script>
+						$("document").ready(function () {
+							swal("", "Mesaj okundu!", "success", {
+								button: {
+									text: "Tamam",
+								},
+							});
+
+						});
+					</script>
+				}
+
+			</form>
+		</div>
+	</div>
+</div>
+
+

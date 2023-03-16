@@ -1,0 +1,42 @@
+﻿@{
+	Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html lang="tr">
+
+@await Html.PartialAsync("/Areas/Writer/Views/Home/HeadPartial.cshtml")
+
+<body>
+	<div class="container-scroller">
+
+		@await Html.PartialAsync("/Areas/Writer/Views/Home/NavbarPartial.cshtml")
+
+		<div class="container-fluid page-body-wrapper">
+
+			@await Html.PartialAsync("/Areas/Writer/Views/Home/SideBarPartial.cshtml")
+
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<div class="row">
+						<div class="col-lg-12 grid-margin">
+							<div class="card">
+								@RenderBody()								
+							</div>
+							@await RenderSectionAsync("Scripts",required:false)
+						</div>
+					</div>
+				</div>
+
+				@await Html.PartialAsync("/Areas/Writer/Views/Home/FooterPartial.cshtml")
+
+			</div>
+		</div>
+	</div>
+
+	@await Html.PartialAsync("/Areas/Writer/Views/Home/ScriptPartial.cshtml")
+
+</body>
+</html>

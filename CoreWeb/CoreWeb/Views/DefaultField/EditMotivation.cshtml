@@ -1,0 +1,34 @@
+﻿@model EntityLayer.Concrete.DefaultField
+
+@{
+	ViewData["Title"] = "EditMotivation";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="card-header bg-transparent border-0 ">
+	<h3 class="text-white mb-0">Güncelleme</h3>
+</div>
+
+
+@using (Html.BeginForm("EditMotivation", "DefaultField", FormMethod.Post))
+{
+
+	<div class="col-lg-7 col-md-10">
+		<form class="form-group" method="post">
+			@Html.HiddenFor(c=>c.ID)
+			<label for="example-text-input" class="form-control-label">Yetenek</label>
+			@Html.TextBoxFor(c => c.Subtitle, new { @class="form-control" })
+			<br />
+			<label for="example-text-input" class="form-control-label">Yetenek Değeri</label>
+			@Html.TextAreaFor(c => c.Description,5,2, new { @class="form-control" })
+			<br />
+			<button class="btn btn-outline-warning">Güncelle</button>
+			<br />
+			<br />
+
+		</form>
+	</div>
+}
+

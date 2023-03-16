@@ -1,0 +1,61 @@
+﻿@using EntityLayer.Concrete
+@model List<Message>
+
+
+
+<div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
+	<div class="bg-light my-2 p-3 pt-2">
+		<form action="/Default/SendMessage/" method="post">
+			<div class="form-group my-2">
+				<label for="name" class="form-label fw-bolder">Ad Soyad</label>
+				<input class="form-control" type="text" id="fullname" name="Name" required>
+			</div>
+			<div class="form-group my-2">
+				<label for="email" class="form-label fw-bolder">Mail</label>
+				<input class="form-control" type="email" id="email" name="Mail" required>
+			</div>
+			<div class="form-group my-2">
+				<label for="message" class="form-label fw-bolder">Mesaj</label>
+				<textarea class="form-control" style="resize: none;" id="message" name="Content" rows="7" required></textarea>
+			</div>
+			<button class="btn btn-primary mt-2" id="btnAdd" type="submit">Gönder</button>
+		</form>
+	</div>
+</div>
+
+
+
+@section Scripts
+	{
+	<script>
+
+		$("#btnAdd").click(function () { //Ekleme
+			let values = {
+				Name: $("#fullname").val(),
+				Mail: $("#email").val(),
+				Content: $("#message").val()
+			};
+
+			$.ajax({
+				contentType: "application/json",
+				type: "Post",
+				url: "/Default/SendMessage/", 
+				timeout: 1000,
+				data: values,
+
+				error: function () { 
+					alert("some error occurred") 
+				},
+
+				success: function (func1) {
+					let results = jQuery.parseJSON(func1);
+					alert("Good job!", "Mesaj Gönderildi!", "success");
+				}
+			});
+		});
+
+	</script>
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

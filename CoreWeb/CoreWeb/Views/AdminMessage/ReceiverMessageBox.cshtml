@@ -1,0 +1,89 @@
+﻿@using EntityLayer.Concrete
+@model List<MessageSwitchingSystem>
+
+@{
+    ViewData["Title"] = "ReceiverMessageBox";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@{
+	string icon = "";
+}
+
+
+<div class="row">
+	<div class="col">
+		<div class="card">
+			<!-- Card header -->
+			<div class="card-header border-0">
+				<h3 class="mb-0">Yazar Admin Gelen Mesajlar</h3>
+			</div>
+			<!-- Light table -->
+			<div class="table-responsive">
+				<table class="table align-items-center table-flush">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col" class="sort">#</th>
+							<th scope="col" class="sort">Gönderen</th>
+							<th scope="col" class="sort">Konu</th>
+							<th scope="col" class="sort">Mesaj</th>
+							<th scope="col" class="sort">Tarih</th>
+							<th scope="col" class="sort" data-sort="completion">Durum</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody class="list">
+						@foreach (var item in Model)
+						{
+							if (item.Status == false)
+							{
+								icon = "/admin/assets/img/icons/common/eye-slash-solid.svg";								
+							}
+							if (item.Status == true)
+							{
+								icon = "/admin/assets/img/icons/common/eye-solid.svg";
+							}
+
+							<tr>
+								<th scope="row">
+									<div class="media align-items-center">
+										<div class="media-body">
+											<span class="name mb-0 text-sm">@item.ID</span>
+										</div>
+										@*										<img alt="Image placeholder" height="90" width="90" src="@item.ma">
+									*@
+									</div>
+								</th>								
+								<td class="budget">
+									<span class="badge badge-warning badge-lg">@item.SenderName</span>
+									@*-
+									<a href="mailto:@item.Receiver" class="text-dark">@item.Receiver </a>*@
+								</td>
+								<td>@item.Subject</td>
+								<td>
+									<div class="d-flex align-items-center" data-toggle="tooltip" data-placement="top" title="Mesaj detay için tıklayın.">
+										<a href="/AdminMessage/Details/@item.ID">
+											<span class="completion mr-2">
+												@item.Message.Substring(0, item.Message.Substring(0, 50).LastIndexOf(" "))...
+											</span>
+										</a>
+									</div>
+								</td>
+								<td>
+									<div class="d-flex align-items-center">
+										<span class="completion mr-2">@item.Date.ToShortDateString()</span>
+									</div>
+								</td>
+								<td class="text">
+									<img alt="Image placeholder" height="50" width="50" src="@icon">
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>		
+		</div>
+	</div>
+</div>

@@ -1,0 +1,115 @@
+﻿@using EntityLayer.Concrete
+@model List<Announcement>
+
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+@{
+	string color = "";
+}
+
+<div class="row">
+	<div class="col-lg-12 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<div class="card-header border-0">
+					<div class="row align-items-center">
+						<div class="col">
+							<h3 class="mb-0">Duyurular</h3>
+						</div>
+						<div class="col text-right">
+							<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#Modal1">Duyuru Ekle</button>
+						</div>
+					</div>
+				</div>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Duyuru</th>
+								<th>Tarih</th>
+								<th class="font-weight-medium">Tür</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								if (item.Status == "Proje")
+								{
+									color = "badge badge-danger";
+								}
+								if (item.Status == "Eğitim")
+								{
+									color = "badge badge-success";
+								}
+								if (item.Status == "İçerik")
+								{
+									color = "badge badge-info";
+								}
+								if (item.Status == "Video & Sunum")
+								{
+									color = "badge badge-primary";
+								}
+								if (item.Status == "Yazılım")
+								{
+									color = "badge badge-warning";
+								}
+
+							
+
+								<tr>
+									<th>@item.ID</th>
+									<td>
+										<a href="/Writer/Author/AnnouncementDetails/@item.ID">@item.Title</a>
+									</td>
+									@*<td>@item.Date.ToShortDateString()</td>*@
+									<td>@(((DateTime)item.Date).ToString("dd-MMMM-yyyy"))</td>
+									@*<td>@item.Content.Substring(0, item.Content.Substring(0, 90).LastIndexOf(" "))...</td>*@
+									<td><label class="@color">@item.Status</label></td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+@*ModalADD*@
+<div class="modal" id="Modal1">
+	<div class="modal-dialog" tabindex="-1">
+		<div class="modal-content">
+			<div class="header card-header bg-transparent pb-5">
+				<div class="text-muted text-center mt-2 mb-3">
+					<b>Duyuru Ekle</b>
+					<a class="close text-danger" href="/Writer/Author/Index">&times;</a>
+				</div>
+			</div>
+
+			<div class="modal-body">
+				<form method="post" action="/Writer/Author/Add/">
+					
+					<input type="text" placeholder="Başlık" name="Title" class="form-control" />
+					<br />
+					<input type="text" placeholder="Kategori" name="Status" class="form-control" />
+					<br />
+					<input type="date" placeholder="Tarih" name="Date" class="form-control" />
+					<br />
+					<textarea type="text" placeholder="Duyuru" name="Content" class="form-control" rows="7" cols="2"></textarea>
+
+					<div class="modal-footer">
+						<button class="btn btn-warning">Kaydet</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

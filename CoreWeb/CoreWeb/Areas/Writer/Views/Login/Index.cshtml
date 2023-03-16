@@ -1,0 +1,84 @@
+﻿@model CoreWeb.Areas.Writer.Models.UserLoginViewModel
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Login</title>
+	<link rel="stylesheet" href="~/Admin2/vendors/feather/feather.css">
+	<link rel="stylesheet" href="~/Admin2/vendors/ti-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="~/Admin2/vendors/css/vendor.bundle.base.css">
+	<link rel="stylesheet" href="~/Admin2/css/vertical-layout-light/style.css">
+	<link rel="shortcut icon" href="~/Admin2/images/favicon.png" />
+</head>
+
+<body>
+	<div class="container-scroller">
+		<div class="container-fluid page-body-wrapper full-page-wrapper">
+			<div class="content-wrapper d-flex align-items-center auth px-0">
+				<div class="row w-100 mx-0">
+					<div class="col-lg-4 mx-auto">
+						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
+							<div class="brand-logo">
+								<a href="/Default/Index/">
+									<img src="~/Admin2/images/logo-light.svg" alt="logo">
+								</a>
+							</div>
+							<h4>Hoş geldin</h4>
+							<h6 class="font-weight-light">
+								Devam etmek için oturum açın.
+							</h6>
+							<form class="pt-3" method="post">
+								<div class="form-group">
+									<input type="text" asp-for="Username" class="form-control form-control-lg" placeholder="Kullanıcı Adı">
+									<span asp-validation-for="Username" class="text-danger"></span>
+								</div>
+								<div class="form-group">
+									<input type="password" asp-for="Password" class="form-control form-control-lg" placeholder="Şifre">
+									<span asp-validation-for="Password" class="text-danger"></span>
+								</div>
+								<div class="mt-3">
+									<button class="btn btn-primary btn-lg btn-block">Giriş</button>
+								</div>
+								@*								<div class="my-2 d-flex justify-content-between align-items-center">
+								<div class="form-check">
+								<label class="form-check-label text-muted">
+								<input type="checkbox" class="form-check-input">
+								Beni hatırla
+								</label>
+								</div>
+								<a href="#" class="auth-link text-black">Şifre mi unuttum!</a>
+								</div>*@
+								<div class="text-danger" asp-validation-summary="ModelOnly">
+								</div>
+								<div class="text-center mt-4 font-weight-light">
+									Bir hesabın yok mu? <a href="/Writer/Register/RegisterNow/" class="text-primary">Üye Ol</a>
+								</div>
+							</form>
+						</div>
+						<footer class="py-5" id="footer-main">
+							<div class="container">
+								<p>@DateTime.Now.Year Tüm hakları saklıdır | Tasarlayan by <a href="https://github.com/cemil17">CKG</a></p>
+							</div>
+						</footer>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="~/Admin2/vendors/js/vendor.bundle.base.js"></script>
+	<script src="~/Admin2/js/off-canvas.js"></script>
+	<script src="~/Admin2/js/hoverable-collapse.js"></script>
+	<script src="~/Admin2/js/template.js"></script>
+	<script src="~/Admin2/js/settings.js"></script>
+
+</body>
+
+</html>

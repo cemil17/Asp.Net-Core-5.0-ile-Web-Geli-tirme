@@ -1,0 +1,83 @@
+﻿@using EntityLayer.Concrete
+@model List<MessageSwitchingSystem>
+
+
+@{
+	ViewData["Title"] = "ReceiverMessage";
+	Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+@{
+	string icon = "";
+}
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+	<div class="card">
+		<div class="card-body">
+			<h4 class="card-title">Gelen Mesajlar</h4>
+			<p class="card-description">
+				<a href="/Writer/Message/SenderMessage/">Giden Mesaj</a>
+			</p>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>
+								#
+							</th>
+							<th>
+								Gönderen
+							</th>
+							<th>
+								Konu (Detaylar)
+							</th>
+							<th>
+								Tarih
+							</th>
+							<th>
+								Durum
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							if (item.Status == false)
+							{
+								icon = "/admin/assets/img/icons/common/eye-slash-solid.svg";
+							}
+							if (item.Status == true)
+							{
+								icon = "/admin/assets/img/icons/common/eye-solid.svg";
+							}
+
+							<tr>
+								<td class="py-1" data-toggle="tooltip" data-placement="top" title="@item.ID">
+									@*<div class="badge badge-primary badge-pill my-auto">@item.ID</div>*@
+									<img src="~/Admin2/images/user.png" alt="image" />
+								</td>
+								<td>
+									<span class="badge badge-dark">@item.SenderName</span> - <span class="badge badge-warning">@item.Sender</span>
+								</td>
+								<td>
+									<a href="/Writer/Message/ReceiverMessageDetails/@item.ID" data-toggle="tooltip" data-placement="top" title="Mesaj Detay">@item.Subject</a>
+								</td>
+								<td>
+									@item.Date.ToShortDateString()
+								</td>
+								<td>
+									<img alt="Image placeholder" height="50" width="50" src="@icon">
+								</td>
+							</tr>
+
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
